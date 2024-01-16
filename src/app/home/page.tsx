@@ -1,10 +1,13 @@
 import { Page } from '@/Page'
-import Image from 'next/image'
 import HeroBanner from '@/components/home/HeroBanner'
-export default function Home() {
+import React from 'react'
+
+function Home() {
   return (
     <Page>
-      <HeroBanner />
+      <HeroBanner/>
     </Page>
   )
 }
+
+export default Home
