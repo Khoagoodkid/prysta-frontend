@@ -5,9 +5,8 @@ import { Poppins } from 'next/font/google'
 function About() {
   return (
     <Page>
-      <div className='h-screen'>
-
-      </div>
+      <div className='h-screen '>
+        </div>
     </Page>
   )
 }

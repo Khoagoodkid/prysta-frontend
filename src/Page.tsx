@@ -21,11 +21,11 @@ export const Page: React.FC<PageProps> = ({
     const [isLoading, setIsLoading] = useState(false)
 
     return (
-        <div className="w-screen">
+        <div className="w-screen z-[100] ">
             {includeHeader && <HeaderByDevice setIsLoading={setIsLoading} />}
-            <div className="w-full h-screen">
+            <div className="absolute top-0 left-0 right-0 ">
                 <div
-                    className={clsx('h-screen', {
+                    className={clsx('h-screen ', {
                         'pb-[149px] md:pb-[112px]': !includeFooter,
                     })}>
                     {children}
