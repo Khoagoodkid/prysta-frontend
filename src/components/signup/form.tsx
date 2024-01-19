@@ -1,16 +1,12 @@
 "use client"
+import { ProfileProps } from "@/app/signup/page"
 import { EmailIcon } from "@/icons/EmailIcon"
 import { ProfileCardIcon } from "@/icons/ProfileCardIcon"
 import { UserIcon } from "@/icons/UserIcon"
 import Link from "next/link"
+
 import { ReactNode, useState } from "react"
-type ProfileProps = {
-    username: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-}
+
 type FormFieldProps = {
     id: string,
     onchange: (e: any) => void,
@@ -18,14 +14,14 @@ type FormFieldProps = {
     text: string,
     width: string
 }
-export const Form = () => {
-    const [profile, setProfile] = useState<ProfileProps>({
-        username: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    })
+type FormProps = {
+    profile: ProfileProps,
+    setProfile: (profile: ProfileProps) => void,
+    signUpHandler: (e: any) => void
+}
+export const Form = ({ profile, setProfile, signUpHandler }: FormProps) => {
+
+
     const formLayout: FormFieldProps[] = [
         {
             id: 'username',
@@ -73,14 +69,11 @@ export const Form = () => {
             width: '12',
         },
     ]
-    const signUpHandler = (e: any) => {
-        e.preventDefault()
-        console.log(profile)
-    }
+
     return (
-        <form className="w-[95%] md:w-[35em] grid grid-cols-12 items-start gap-5" onSubmit={signUpHandler}>
+        <form className="grid grid-cols-12 w-[95%] md:w-[30em] gap-3" onSubmit={signUpHandler}>
             <span className="col-span-12 md:text-[3em] font-[700] leading-[1em]">
-                Create <br/>
+                Create <br />
                 New Account.
             </span>
             {formLayout.map((field, index) => {
@@ -88,13 +81,19 @@ export const Form = () => {
                     <FormField key={index} field={field} />
                 )
             })}
+
             <div className="flex justify-end col-span-12">
                 <span> Already A Member?</span>
                 <Link href="/login">
                     <span className="ml-2 underline"> Login</span>
                 </Link>
             </div>
-            <button type="submit" className="col-span-12 py-[1em] bg-base-v2-6 rounded-[2em] text-white font-[700] hover:opacity-[.8]">Create account</button>
+            <div className="col-span-12">
+                <Link href={{ pathname: '/signup/create-progress', query: { profile: JSON.stringify(profile) } }}>
+                    <button type="submit" className="w-full py-[1em] bg-base-v2-6 rounded-[2em] text-white font-[700] hover:opacity-[.8]">Create account</button>
+                </Link>
+
+            </div>
         </form>
     )
 }
