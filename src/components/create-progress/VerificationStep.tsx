@@ -21,7 +21,7 @@ export const VerificationStep = ({userData, setNextBtnDisabled}:{userData:Profil
         const code = array[0] % 1000000;
       
         setVerCode(code)
-        axios.post(process.env.API_URL + 'phone-auth/sms', {
+        axios.post(process.env.API_URL + 'auth/', {
             email:userData.email,
             ver_code:code
         })
